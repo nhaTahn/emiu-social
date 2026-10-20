@@ -1,0 +1,122 @@
+@layer social {
+  #invitation { display:flex;flex-wrap:wrap;gap:10px }
+  #invitation .small-note { flex-basis:100%;margin-top:0 }
+  #quick-card { min-width:180px }
+  .joystick-wrap { width:116px;flex:0 0 116px;text-align:center;user-select:none;-webkit-user-select:none }
+  .joystick { width:106px;height:106px;margin:auto;position:relative;border:1px solid #cda5ba;border-radius:50%;background:radial-gradient(circle,#f6e3edcc 40%,#fceff4dd 41%,#e9ccdbbb 97%);touch-action:none;overscroll-behavior:contain;box-shadow:inset 0 1px 8px #ac77921a,0 8px 24px #89526f0d;cursor:grab }
+  .joystick::before,.joystick::after { content:'';position:absolute;background:#cda5ba70;pointer-events:none }
+  .joystick::before { width:1px;height:70%;left:50%;top:15% }
+  .joystick::after { height:1px;width:70%;top:50%;left:15% }
+  .joystick-ring { position:absolute;inset:13px;border:1px dashed #cda5ba88;border-radius:50% }
+  .joystick-knob { position:absolute;left:50%;top:50%;margin:-24px 0 0 -24px;width:48px;height:48px;display:grid;place-items:center;border:1px solid #ba8ca6;border-radius:50%;background:linear-gradient(140deg,#fff9fc,#dfb0ca);box-shadow:0 5px 13px #7d476333,inset 0 1px 2px #fff;color:#83516c;font:26px Georgia;transform:translate(var(--stick-x,0px),var(--stick-y,0px));will-change:transform;transition:transform .12s ease-out;z-index:1;pointer-events:none }
+  .joystick.active { cursor:grabbing;border-color:#a46788 }
+  .joystick.active .joystick-knob { transition:none }
+  #joystick-help { display:block;font-size:9px;margin-top:6px;color:#865d73 }
+  .world-hint { bottom:145px }
+  .world-bottom { align-items:end }
+  .photo-grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0;max-height:38svh;overflow-y:auto;padding:3px }
+  .photo-item { position:relative;min-width:0 }
+  .photo-pick { display:block;width:100%;aspect-ratio:1;overflow:hidden;border:3px solid transparent;border-radius:12px;background:#efdae4 }
+  .photo-pick img { width:100%;height:100%;object-fit:cover }
+  .photo-pick[aria-pressed=true] { border-color:#9e5e82;box-shadow:0 0 0 2px #edcfdf }
+  .photo-delete { position:absolute;right:-3px;top:-3px;border-radius:50%;width:32px;height:32px;background:#fff8f4e8;border:1px solid #cfa7bc;font-size:22px }
+  .photo-empty { text-align:center;padding:28px 12px;font:italic 22px/1.6 Georgia;color:#956a81 }
+  .photo-picker-actions { display:flex;flex-wrap:wrap;gap:8px }
+  .photo-picker-actions button { flex:1;min-width:130px }
+  #photo-done { flex-basis:100% }
+  #photo-dialog { width:min(560px,calc(100% - 24px)) }
+  .card-photo-actions { flex-wrap:wrap }
+  .card-photo-actions button { min-width:85px }
+  #card-random { background:#f2dfeb }
+  .tools #header-card { background:#efdbe6;border:1px solid #ddbbcf;border-radius:10px;padding:7px 12px }
+  @media(max-width:760px) {
+    body { height:100dvh }
+    .site-header { flex-basis:58px;min-height:58px;padding:5px 14px;gap:8px }
+    .tools { gap:5px }
+    .tools button { min-width:40px }
+    .tools #header-card { font-size:12px;padding:7px 9px }
+    .tools #profile-open span,.tools #music-toggle span { display:none }
+    .tools #profile-open,.tools #music-toggle { font-size:19px }
+    .wordmark { font-size:29px;gap:8px }
+    .wordmark svg { width:14px }
+    #invitation { display:grid;grid-template-columns:1fr 1fr;gap:8px }
+    #invitation .small-note { grid-column:1/-1;font-size:9px;line-height:1.5 }
+    #quick-card,.start-button { min-width:0;width:auto;font-size:12px;padding:12px 8px;min-height:48px }
+    .intro { padding-top:15px }
+    .intro h1 { font-size:42px;margin:10px 0 12px }
+    .dedication { font-size:11px;max-width:285px;margin-bottom:14px }
+    body:not(.started) .garden-wrap { min-height:180px }
+    .started #current-description { display:none }
+    .started .intro { padding-top:8px }
+    .started #current-name { font-size:26px;margin:5px 0 }
+    .started .keepsakes { margin-top:4px }
+    .started #garden { inset:15px 0 45px }
+    .started .world-bottom { bottom:2px;left:18px;right:18px;pointer-events:none }
+    .world-bottom>* { pointer-events:auto }
+    .started .hero { padding-bottom:64px }
+    .started #explore { bottom:calc(74px + env(safe-area-inset-bottom,0px));min-height:48px;height:48px }
+    .station-nav { flex-basis:calc(68px + env(safe-area-inset-bottom,0px));height:calc(68px + env(safe-area-inset-bottom,0px));min-height:68px }
+    #toast { bottom:calc(133px + env(safe-area-inset-bottom,0px)) }
+    .joystick-wrap { width:106px;flex-basis:106px }
+    .joystick { width:100px;height:100px }
+    #joystick-help { font-size:8px;margin-top:5px }
+    .site-footer { flex-basis:42px;font-size:8px;display:flex;align-items:center;justify-content:center;gap:2px;padding:0 10px 5px }
+    .started .site-footer { display:none }
+    .site-footer button { font-size:9px;min-height:28px }
+    #keepsake-dialog { padding:14px }
+    #keepsake-dialog .dialog-heading { margin-bottom:10px }
+    #keepsake-dialog .dialog-heading h2 { font-size:25px;margin-top:4px }
+    .card-preview-wrap { max-height:none;padding:6px }
+    .card-preview-wrap canvas { max-height:36dvh }
+    .card-workspace { gap:9px }
+    .card-controls { gap:7px }
+    .card-controls .segmented button,.card-photo-actions button { min-height:40px;padding:8px 5px;font-size:10px }
+    .card-photo-actions { flex-wrap:nowrap }
+    .card-photo-actions button { min-width:0 }
+    .card-controls>#capture-card,.card-controls>#card-name { min-height:36px }
+    .card-controls>#share-card { min-height:36px }
+    .card-controls>#download-card { min-height:46px }
+    .photo-grid { grid-template-columns:repeat(3,minmax(0,1fr));max-height:40dvh;gap:10px }
+    .photo-delete { width:36px;height:36px }
+    .photo-picker-actions button { min-width:115px;font-size:11px;padding:12px 8px }
+    #photo-dialog .dialog-heading { margin-bottom:10px }
+    #photo-dialog h2 { font-size:27px }
+  }
+  @media(max-width:760px) and (max-height:710px) {
+    .intro h1 { font-size:36px }
+    .intro>.eyebrow { display:none }
+    .scene-caption { display:none }
+    .started #garden { inset:0 0 40px }
+    .started #gift-list { display:none }
+    .progress-track { margin-bottom:1px }
+    .card-preview-wrap canvas { max-height:29dvh }
+    #keepsake-dialog .dialog-heading .eyebrow { display:none }
+  }
+  @media(max-width:760px) and (max-height:500px) {
+    .site-header { flex-basis:48px;min-height:48px }
+    .hero { padding-top:0 }
+    #invitation { grid-template-columns:1fr }
+    #invitation .small-note { display:none }
+    .intro h1 { font-size:28px;margin:5px 0 }
+    .dedication { font-size:10px;margin:6px 0 }
+    .start-button,#quick-card { min-height:40px;padding:9px }
+    .started .hero { display:grid;grid-template-columns:1fr 1.5fr;padding-bottom:54px;gap:12px }
+    .started #garden { inset:0 0 15px }
+    .started .world-bottom { left:0;right:0;justify-content:space-between;bottom:0 }
+    .started #explore { height:42px;min-height:42px;bottom:72px;padding:9px }
+    .joystick-wrap { flex-basis:80px;width:80px }
+    .joystick { width:76px;height:76px }
+    .joystick-knob { width:40px;height:40px;margin:-20px 0 0 -20px }
+    #joystick-help { display:none }
+    .card-preview-wrap canvas { max-height:calc(100dvh - 115px) }
+    .card-controls .segmented button,.card-photo-actions button { min-height:34px;font-size:9px }
+    .card-controls>#card-name,.card-controls>#capture-card,.card-controls>#share-card { min-height:30px }
+    .card-controls>#download-card { min-height:38px }
+    .card-controls { gap:4px }
+    .photo-grid { grid-template-columns:repeat(6,minmax(0,1fr));max-height:27dvh }
+    .photo-empty { padding:12px;font-size:17px }
+    #photo-done { flex-basis:auto }
+    #photo-dialog .small-note { font-size:9px;line-height:1.4 }
+  }
+  @media(prefers-reduced-motion:reduce) { .joystick-knob { transition:none } }
+}
